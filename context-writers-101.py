@@ -89,25 +89,17 @@ class JSONWriter(ContextWriter):
                 self.buf.append({key: val})
 
 
-if __name__ == '__main__':
-    inp = [
-        {
-            'key-' + str(x) : 'val-' + str(x)
-            for x in range(25 * a , 25 * (a + 1))
-        } for a in range(5)
-    ]
+# # Example usage.
+# if __name__ == '__main__':
+#     inp = [
+#         [
+#             {'key-' + str(x) : 'val-' + str(x)}
+#             for x in range(250 * a, 250 * (a+1))
+#         ] for a in range(11) 
+#     ]
 
-    inp2 = [
-        [
-            {'key-' + str(x) : 'val-' + str(x)}
-            for x in range(250 * a, 250 * (a+1))
-        ] for a in range(11) 
-    ]
-
-
-    out = []
-
-    with JSONWriter('j-writer.json', lim = 1000) as dw:
-        for data in inp2:
-            dw + data
-            input(f'Total buffered records: {len(dw.buf)}.  Press enter!')
+#     out = []
+#     with JSONWriter('j-writer.json', lim = 1000) as dw:
+#         for data in inp:
+#             dw + data
+#             input(f'Total buffered records: {len(dw.buf)}.  Press enter!')
