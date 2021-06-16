@@ -6,10 +6,10 @@ Warehousing large batches in a serial fashion  means the ingest process needs to
 
 Say the load batching is being done the right way already.  If you're doing that in your driver code, it's impacting readability because batching inline is ugly.  Luckily, batching and batch management is a really good use case for context-based management:
 
-(a) Load batching is generally consistent in that it happens in specific sized chunks or after some limit has been met.
-(b) Load batching happens intermittently and as a result of (a) - but it also needs to happen one last time if you haven't hit the limit and you still have data.  
-(c) The code that handles the batching happens in a repeatable and consistent manner.  
-(d) If the load job happens on a separate thread, those threads need to be sync'ed and terminated gracefully.  Assuming the batch job's kinks have been worked out, the synchronization of threads should happen in a way that doesn't interrupt the ingest process.
+- (a) Load batching is generally consistent in that it happens in specific sized chunks or after some limit has been met.
+- (b) Load batching happens intermittently and as a result of (a) - but it also needs to happen one last time if you haven't hit the limit and you still have data.  
+- (c) The code that handles the batching happens in a repeatable and consistent manner.  
+- (d) If the load job happens on a separate thread, those threads need to be sync'ed and terminated gracefully.  Assuming the batch job's kinks have been worked out, the synchronization of threads should happen in a way that doesn't interrupt the ingest process.
 
 ```
 with ContextBatchWriter(**my_params) as cbw:
